@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Trigonometry.App/Trigonometry.App.csproj" />
+  <Project Path="Trigonometry.Core/Trigonometry.Core.csproj" />
+  <Project Path="Trigonometry.Tests/Trigonometry.Tests.csproj" />
+</Solution>
