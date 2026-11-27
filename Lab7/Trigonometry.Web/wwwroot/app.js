@@ -15,7 +15,12 @@ function status(message, error = false) {
     $('status').classList.toggle('error', error);
 }
 async function request(url, options) {
-    const response = await fetch(url, options);
+    let response;
+    try {
+        response = await fetch(url, options);
+    } catch {
+        throw new Error('Нет соединения с сервером. Запустите приложение в терминале и обновите страницу.');
+    }
     const body = await response.json();
     if (!response.ok) throw new Error(body.error || body.detail || 'Не удалось выполнить запрос. Проверьте параметры.');
     return body;
