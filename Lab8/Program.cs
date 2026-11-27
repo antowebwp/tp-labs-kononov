@@ -1,0 +1,15 @@
+using System.Diagnostics;
+using Lab8.Optimization;
+var data = PurchaseData.Generate(30000);
+var timer = Stopwatch.StartNew();
+var unique = Baseline.Unique(data);
+Console.WriteLine($"Уникальных покупателей: {unique.Count}; {timer.Elapsed.TotalMilliseconds:F3} мс");
+timer.Restart();
+string report = Baseline.Report(data);
+Console.WriteLine($"Отчёт: {report.Length}; {timer.Elapsed.TotalMilliseconds:F3} мс");
+timer.Restart();
+var sorted = Baseline.Sort(data);
+Console.WriteLine($"Медиана: {sorted[sorted.Count / 2]}; {timer.Elapsed.TotalMilliseconds:F3} мс");
+timer.Restart();
+var totals = Baseline.Totals(data, unique);
+Console.WriteLine($"Лидер: {totals.MaxBy(t => t.Total)!.Buyer}; {timer.Elapsed.TotalMilliseconds:F3} мс");
