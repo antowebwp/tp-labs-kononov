@@ -4,7 +4,17 @@ namespace Lab8.Optimization;
 public static class Optimized
 {
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public static List<string> Unique(PurchaseData data, CancellationToken token = default) => Baseline.Unique(data, token);
+    public static List<string> Unique(PurchaseData data, CancellationToken token = default) 
+    {
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        var unique = new List<string>();
+        for (int i = 0; i < data.Buyers.Count; i++)
+        {
+            if ((i & 255) == 0) token.ThrowIfCancellationRequested();
+            if (seen.Add(data.Buyers[i])) unique.Add(data.Buyers[i]);
+        }
+        return unique;
+    }
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static string Report(PurchaseData data, CancellationToken token = default) => Baseline.Report(data, token);
     [MethodImpl(MethodImplOptions.NoInlining)]
