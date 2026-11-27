@@ -1,0 +1,69 @@
+{
+  "count": 30000,
+  "repetitions": 3,
+  "measuredAt": "2026-11-27T18:22:37.246946+07:00",
+  "stages": [
+    {
+      "key": "unique",
+      "name": "\u0423\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u0435 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0438",
+      "beforeMs": 216.4003,
+      "afterMs": 1.2445,
+      "beforeBytes": 131440,
+      "afterBytes": 454056,
+      "equal": true,
+      "change": "List.Contains \u2192 HashSet",
+      "beforeComplexity": "O(n \u00D7 m)",
+      "afterComplexity": "O(n) \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C",
+      "speedup": 173.8853354760948
+    },
+    {
+      "key": "report",
+      "name": "\u0422\u0435\u043A\u0441\u0442\u043E\u0432\u044B\u0439 \u043E\u0442\u0447\u0451\u0442",
+      "beforeMs": 2040.025,
+      "afterMs": 0.6539,
+      "beforeBytes": 12301093512,
+      "afterBytes": 1657208,
+      "equal": true,
+      "change": "string \u002B= \u2192 StringBuilder",
+      "beforeComplexity": "O(n\u00B2)",
+      "afterComplexity": "O(n)",
+      "speedup": 3119.7813121272366
+    },
+    {
+      "key": "sort",
+      "name": "\u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u0441\u0443\u043C\u043C",
+      "beforeMs": 1653.0168,
+      "afterMs": 2.1925,
+      "beforeBytes": 120136,
+      "afterBytes": 120136,
+      "equal": true,
+      "change": "\u041F\u0443\u0437\u044B\u0440\u044C\u043A\u043E\u0432\u0430\u044F \u2192 List.Sort",
+      "beforeComplexity": "O(n\u00B2)",
+      "afterComplexity": "O(n log n)",
+      "speedup": 753.941527936146
+    },
+    {
+      "key": "totals",
+      "name": "\u0420\u0430\u0441\u0445\u043E\u0434\u044B \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0435\u0439",
+      "beforeMs": 781.9287,
+      "afterMs": 3.2658,
+      "beforeBytes": 290992,
+      "afterBytes": 651160,
+      "equal": true,
+      "change": "\u0412\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0435 \u0446\u0438\u043A\u043B\u044B \u2192 Dictionary",
+      "beforeComplexity": "O(n \u00D7 m)",
+      "afterComplexity": "O(n \u002B m) \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C",
+      "speedup": 239.42945067058608
+    }
+  ],
+  "summary": {
+    "uniqueBuyers": 4986,
+    "reportLength": 409941,
+    "medianAmount": 4992,
+    "topBuyer": "user1846",
+    "topTotal": 93997
+  },
+  "equal": true,
+  "beforeMs": 4691.370800000001,
+  "afterMs": 7.3567
+}
