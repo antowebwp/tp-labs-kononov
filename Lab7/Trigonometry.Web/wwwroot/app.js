@@ -84,14 +84,6 @@ $('form').addEventListener('submit', async event => {
         });
         for (const key of ['sin', 'cos', 'tan', 'cot']) $(key).textContent = number(row[key], row.digits);
         $('equation').textContent = row.angle + (row.degrees ? '°' : ' рад');
-        const radians = row.degrees ? row.angle * Math.PI / 180 : row.angle;
-        const x = 80 + 58 * Math.cos(radians),
-            y = 80 - 58 * Math.sin(radians);
-        $('radius').setAttribute('x2', x);
-        $('radius').setAttribute('y2', y);
-        $('point').setAttribute('cx', x);
-        $('point').setAttribute('cy', y);
-        $('triangle').setAttribute('d', `M80 80 L${x} ${y} L${x} 80 Z`);
         status('Готово. Результат добавлен в историю.');
         await history();
     } catch (error) {
