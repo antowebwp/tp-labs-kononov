@@ -27,7 +27,14 @@ public static class Optimized
         return report.ToString();
     }
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public static List<int> Sort(PurchaseData data, CancellationToken token = default) => Baseline.Sort(data, token);
+    public static List<int> Sort(PurchaseData data, CancellationToken token = default) 
+    {
+        token.ThrowIfCancellationRequested();
+        var sorted = new List<int>(data.Amounts);
+        sorted.Sort();
+        token.ThrowIfCancellationRequested();
+        return sorted;
+    }
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static List<BuyerTotal> Totals(PurchaseData data, List<string> unique, CancellationToken token = default) => Baseline.Totals(data, unique, token);
 }
