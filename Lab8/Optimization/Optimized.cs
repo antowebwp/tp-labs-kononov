@@ -16,7 +16,16 @@ public static class Optimized
         return unique;
     }
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public static string Report(PurchaseData data, CancellationToken token = default) => Baseline.Report(data, token);
+    public static string Report(PurchaseData data, CancellationToken token = default) 
+    {
+        var report = new StringBuilder();
+        for (int i = 0; i < data.Buyers.Count; i++)
+        {
+            if ((i & 255) == 0) token.ThrowIfCancellationRequested();
+            report.Append(data.Buyers[i]).Append(';').Append(data.Amounts[i]).Append(Environment.NewLine);
+        }
+        return report.ToString();
+    }
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static List<int> Sort(PurchaseData data, CancellationToken token = default) => Baseline.Sort(data, token);
     [MethodImpl(MethodImplOptions.NoInlining)]
