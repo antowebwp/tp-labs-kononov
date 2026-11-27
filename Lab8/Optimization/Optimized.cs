@@ -36,5 +36,15 @@ public static class Optimized
         return sorted;
     }
     [MethodImpl(MethodImplOptions.NoInlining)]
-    public static List<BuyerTotal> Totals(PurchaseData data, List<string> unique, CancellationToken token = default) => Baseline.Totals(data, unique, token);
+    public static List<BuyerTotal> Totals(PurchaseData data, List<string> unique, CancellationToken token = default) 
+    {
+        var totals = new Dictionary<string, long>(StringComparer.Ordinal);
+        for (int i = 0; i < data.Buyers.Count; i++)
+        {
+            if ((i & 255) == 0) token.ThrowIfCancellationRequested();
+            totals.TryGetValue(data.Buyers[i], out long total);
+            totals[data.Buyers[i]] = total + data.Amounts[i];
+        }
+        return unique.Select(buyer => new BuyerTotal(buyer, totals[buyer])).ToList();
+    }
 }
